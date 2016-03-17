@@ -1,0 +1,12 @@
+name = Tulane Academic Years
+description = Defines academic years (i.e. 2014-2015)
+core = 7.x
+package = Tulane Content
+version = 7.x-1.0
+project = tulane_academic_years
+dependencies[] = features
+dependencies[] = taxonomy
+features[features_api][] = api:2
+features[field_base][] = field_academic_year_ref
+features[taxonomy][] = academic_years
+mtime = 1429799756

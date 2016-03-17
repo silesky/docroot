@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Experience Freeman Learning feature.
+ */
+
+include_once 'experience_freeman_learning.features.inc';

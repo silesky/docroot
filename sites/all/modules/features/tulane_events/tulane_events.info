@@ -1,0 +1,10 @@
+name = Tulane Events
+description = Defines the fields, content types, Views, and landing pages that comprise the event calendar feature.
+core = 7.x
+package = Tulane Features
+version = 7.x-1.0
+project = tulane_events
+dependencies[] = tulane_calendar_view
+dependencies[] = tulane_event_content_type
+dependencies[] = tulane_event_landing_page
+features[features_api][] = api:2

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MACCT feature.
+ */
+
+include_once 'macct.features.inc';

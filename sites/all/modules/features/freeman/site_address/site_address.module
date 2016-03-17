@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Site Address feature.
+ */
+
+include_once 'site_address.features.inc';

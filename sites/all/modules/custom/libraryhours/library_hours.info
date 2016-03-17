@@ -1,0 +1,5 @@
+name = Library hours Calendar
+description = Allows library business hours to be displayed on Jquery Calendar
+core = 7.x
+dependencies[] = libraries
+package = Custom

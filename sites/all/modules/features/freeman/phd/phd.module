@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the PhD feature.
+ */
+
+include_once 'phd.features.inc';

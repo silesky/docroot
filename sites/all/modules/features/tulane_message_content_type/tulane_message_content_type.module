@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Tulane Message Content Type feature.
+ */
+
+include_once 'tulane_message_content_type.features.inc';

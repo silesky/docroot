@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Houston feature.
+ */
+
+include_once 'houston.features.inc';

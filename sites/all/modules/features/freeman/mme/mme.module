@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MME feature.
+ */
+
+include_once 'mme.features.inc';

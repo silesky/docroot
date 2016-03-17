@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Alumni Success Stories feature.
+ */
+
+include_once 'alumni_success_stories.features.inc';

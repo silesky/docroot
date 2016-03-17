@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the EMBA feature.
+ */
+
+include_once 'emba.features.inc';

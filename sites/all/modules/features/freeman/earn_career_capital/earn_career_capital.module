@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Earn Career Capital feature.
+ */
+
+include_once 'earn_career_capital.features.inc';

@@ -1,0 +1,17 @@
+name = Tulane Organizations
+description = Defines the Organizations vocabulary and related term reference fields.
+core = 7.x
+package = Tulane Required
+version = 7.x-1.2
+project = tulane_organizations
+dependencies[] = features
+dependencies[] = list
+dependencies[] = options
+dependencies[] = taxonomy
+features[features_api][] = api:2
+features[field_base][] = field_organizations_ref
+features[field_base][] = field_organizations_type
+features[field_instance][] = taxonomy_term-organizations-field_organizations_ref
+features[field_instance][] = taxonomy_term-organizations-field_organizations_type
+features[taxonomy][] = organizations
+mtime = 1429711419

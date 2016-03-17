@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Tulane Event Landing Page feature.
+ */
+
+include_once 'tulane_event_landing_page.features.inc';

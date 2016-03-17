@@ -1,0 +1,10 @@
+name = Tulane Image Styles
+description = Defines custom image styles.
+core = 7.x
+package = Tulane Display
+version = 7.x-1.1
+project = tulane_image_styles
+dependencies[] = image
+features[features_api][] = api:2
+features[image][] = 175x175
+mtime = 1429636829

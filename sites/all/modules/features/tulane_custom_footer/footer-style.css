@@ -1,0 +1,30 @@
+footer{
+
+}
+
+.footer-perm li{
+list-style:none;
+position: relative;
+float: right;
+margin-right:10px;
+
+}
+
+.footer-perm a, a:visited{
+color: black;
+font-size: 12px;
+margin-bottom:4px;
+}
+
+
+
+.dept-name, .dept-phone, .dept-email, .dept-address{
+position: relative;
+float: left;
+color: green;
+}
+
+.copyright{
+
+border: 0px solid red;
+}

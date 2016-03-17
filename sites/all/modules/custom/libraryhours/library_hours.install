@@ -1,0 +1,1236 @@
+<?php
+/**
+ * @file
+ * library_hours.install
+ */
+
+/*function library_hours_install() {
+  db_set_active('hours');
+  $schema = library_hours_schema_custom_db();
+  //debug($schema); die();
+  foreach ($schema as $name => $table) {
+    db_create_table($name, $table);
+  }
+  db_set_active();
+}
+
+function library_hours_uninstall() {
+  db_set_active('hours');
+  $schema = library_hours_schema_custom_db();
+  foreach ($schema as $name => $table) {
+    db_drop_table($name);
+  }
+  db_set_active();
+}
+
+/**
+ * Implements my own version of drupal_hook_schema.
+ */
+/*function library_hours_schema_custom_db() {
+ //db_set_active('hours'); 
+  
+  $schema = array();
+
+  $schema['howard_hours_standard'] = array(
+    'description' => 'Standard library business hours table for Howard-Tilton.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for howard_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['howard_hours'] = array(
+    'description' => 'Full list of library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the howard_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+
+  $schema['arc_hours_standard'] = array(
+    'description' => 'Standard Amistad Research Center library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for arc_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['arc_hours'] = array(
+    'description' => 'Full list of Amistad Research Center library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the arc_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+
+  $schema['architecture_hours_standard'] = array(
+    'description' => 'Standard Architecture library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for arc_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['architecture_hours'] = array(
+    'description' => 'Full list of Architecture library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the arc_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+
+  $schema['hogan_hours_standard'] = array(
+    'description' => 'Standard Hogan Jazz library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for arc_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['hogan_hours'] = array(
+    'description' => 'Full list of Hogan Jazz library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the hogan_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+
+  $schema['koch_hours_standard'] = array(
+    'description' => 'Standard Koch library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for koch_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['koch_hours'] = array(
+    'description' => 'Full list of Koch library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the koch_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+  $schema['lal_hours_standard'] = array(
+    'description' => 'Standard Latin American library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for lal_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['lal_hours'] = array(
+    'description' => 'Full list of Latin American library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the lal_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+  $schema['law_hours_standard'] = array(
+    'description' => 'Standard Law library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for law_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['law_hours'] = array(
+    'description' => 'Full list of Law library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the law_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+  $schema['larc_hours_standard'] = array(
+    'description' => 'Standard LaRC library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for larc_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['larc_hours'] = array(
+    'description' => 'Full list of LaRC library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the larc_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+  $schema['matas_hours_standard'] = array(
+    'description' => 'Standard Rudolph Matas library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for matas_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['matas_hours'] = array(
+    'description' => 'Full list of Rudolph Matas library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the matas_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+  $schema['math_hours_standard'] = array(
+    'description' => 'Standard Math library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for math_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['math_hours'] = array(
+    'description' => 'Full list of Math library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the math_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+  $schema['microforms_hours_standard'] = array(
+    'description' => 'Standard Microforms & Newspapers business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for microforms_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['microforms_hours'] = array(
+    'description' => 'Full list of Microforms & Newspapers library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the microforms_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+
+  $schema['mmc_hours_standard'] = array(
+    'description' => 'Standard Music & Media library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for mmc_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['mmc_hours'] = array(
+    'description' => 'Full list of Music & Media library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the mmc_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+  
+  $schema['rare_books_hours_standard'] = array(
+    'description' => 'Standard Rare Books library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for rare_books_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['rare_books_hours'] = array(
+    'description' => 'Full list of Rare Books library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the rare_books_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+
+  $schema['seaa_hours_standard'] = array(
+    'description' => 'Standard SEAA library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for seaa_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['seaa_hours'] = array(
+    'description' => 'Full list of SEAA library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the seaa_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+
+  $schema['turchin_hours_standard'] = array(
+    'description' => 'Standard Turchin Business library business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for turchin_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['turchin_hours'] = array(
+    'description' => 'Full list of Turchin Business library business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the turchin_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+
+  $schema['univ_archives_hours_standard'] = array(
+    'description' => 'Standard University Archives business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for univ_archives_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['univ_archives_hours'] = array(
+    'description' => 'Full list of University Archives business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the univ_archives_hours table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+  
+  $schema['research_desk_hours_standard'] = array(
+    'description' => 'Standard University Archives business hours table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary key for research_desk_hours_standard table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'day' => array(
+        'description' => 'Day of the week.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'hours' => array(
+        'description' => 'Standard hours for paired day.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+     'unique keys' => array(
+      'day' => array('day'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['research_desk_hours'] = array(
+    'description' => 'Full list of HTML Research Desk business hours.',
+    'fields' => array( 
+      'id' => array(
+        'description' => 'The primary key for the html_research_desk table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'Calendar date for hours.',
+        'type' => 'datetime',
+        'mysql_type' => 'date',
+        'not null' => TRUE,
+      ),
+      'hours' => array(
+        'description' => 'Hours for specific date.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),
+      'message' => array(
+        'description' => 'Reason for special hours or closure.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+       'exception' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+
+       ),
+    ),
+      'unique keys' => array(
+        'date' => array('date'),
+      ),
+     'primary key' => array('id'),
+  );
+  return $schema;
+  //db_set_active();
+}*/

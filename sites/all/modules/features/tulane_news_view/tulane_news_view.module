@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Tulane News View feature.
+ */
+
+include_once 'tulane_news_view.features.inc';

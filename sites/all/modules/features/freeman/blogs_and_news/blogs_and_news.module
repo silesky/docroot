@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Blogs and News feature.
+ */
+
+include_once 'blogs_and_news.features.inc';

@@ -1,0 +1,658 @@
+<?php
+/**
+ * @file 
+ * library_hours.module
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function library_hours_permission() {
+
+  //set permissions to submit form
+  return array(
+    'submit library_hours' => array(
+      'title' => t('Submit library_hours'),
+      'description' => t('Sumbit the library_hours form'),
+    ),
+    /*'access library_hours submissions' => array(
+      'title' => t('Access library hours sumbissions'),
+      'description' => t('View the library_hours form submissions'),
+    ),*/
+    /*'hours calendar view' => array(
+      'title' => t('Access library hours calendar view'),
+      'description' => t('View the library_hours calendar'),
+    ),*/
+    
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function library_hours_menu() {
+
+  $items = array();
+  $items['library_hours_form'] = array(
+    'title' => 'Hours Form',
+    'type' => MENU_NORMAL_ITEM,
+    'access arguments' => array('submit library_hours'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('library_hours_form'),
+  );
+  /*$items['library_hours_submissions/%'] = array(
+    'title' => 'Hours Submissions',
+    'type' => MENU_NORMAL_ITEM,
+    'access arguments' => array('access library_hours submissions'),
+    'page callback' => 'show_library_hours_submissions',
+    'page arguments' => array(1),
+  );
+  /*$items['hours'] = array(
+    'title' => 'Hours',
+    'page callback' => 'business_hours_page',
+    'page arguments' => array(2),
+    'access arguments' => array('hours calendar view'),
+    'type' => MENU_CALLBACK,
+  );*/
+ $items['calendar/%'] = array(////------------------------->changed
+    'title' => 'Semester Calendar',
+    'title callback' => 'library_hours_title_callback',
+    'title arguments' => array(1),
+    'page callback' => 'library_hours_calendar_page',//library_hours_calendar_page
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'access arguments' => array('access custom pages'),
+    //'file' => 'mymodule.pages.calendar.inc',
+    'type' => MENU_CALLBACK,
+    //'access arguments' => array('access content'),
+    //'access callback' => TRUE,
+    //'type' => MENU_NORMAL_ITEM,
+  );
+  $items['ajax/library_hours/calendar/%'] = array(
+    'page callback' => 'library_hours_ajax_calendar_events',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+    //'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Library hours form.
+ */
+function library_hours_form() {
+  $form = array();
+  $format = 'Y-m-d';
+
+  $form['department'] = array(
+    '#weight' => '0',
+    '#required' => '1',
+    '#multiple' => '0',
+    '#key_type_toggled' => '1',
+    '#type' => 'select',
+    '#options' => array(
+      'arc' => t('Amistad Research Center'),
+      'architecture' => t('Architecture Library'),
+      'hogan' => t('Hogan Jazz Archive'),
+      'howard' => t('Howard-Tilton Memorial Library'),
+      'koch' => t('Koch Library of Botany'),
+      'lal' => t('The Latin American Library'),
+      'larc' => t('Louisiana Research Collection (LaRC)'),
+      'law' => t('Law Library'),
+      'matas' => t('Matas Library of the Health Sciences'),
+      'math' => t('Math Library'),
+      'microforms' => t('Microforms & Newspapers'),
+      'mmc' => t('Music &  Media Center'),
+      'rare_books' => t('Rare Books'),
+      'research_desk' => t('HTML Research Desk'),
+      'seaa' => t('Southeastern Architectural Archive (SEAA)'),
+      'turchin' => t('Turchin Business Library'),
+      'univ_archives' => t('University Archives'),
+    ),
+    '#multiple_toggle' => '1',
+    '#title' => t('Department'),
+  );
+
+  $form['semester_start'] = array(
+    '#type' => 'date_popup',
+    '#title' => t('Semester Start Date'),
+    '#description' => t('Date semester hours start'),
+    //'#required' => '1',
+    //'#default_value' => ,
+    '#date_format' => $format,
+    '#date_year_range' => '-100:+10',
+  );
+
+  $form['semester_end'] = array(
+    '#type' => 'date_popup',
+    '#title' => t('Semester End Date'),
+    '#description' => t('Date semester hours end'),
+    //'#required' => '1',
+    '#date_format' => $format,
+    '#date_year_range' => '-100:+10',
+  );
+
+  $form['standard_hours_section'] = array(
+    '#weight' => '1',
+    '#title' => t('Standard Hours'),
+    '#description' => t('Enter regular hours of operation like: <br /><br />
+*7:30am - 3:45am<br />
+
+        
+  *7:30am-12:00pm; &nbsp; 1:00pm - 5:00pm<br />
+  *Closed<br /><br />
+You can update an individual day if hours for a particular day permanently change.'),
+    '#type' => 'fieldset',
+    '#collapsible' => '1',
+    '#collapsed' => '0',
+  );
+
+  $form['standard_hours_section']['monday'] = array(
+    '#required' => '0',
+    '#description' => t('example :  7:30am - 3:45am'),
+    '#weight' => '0',
+    '#type' => 'textfield',
+    '#title' => t('Monday'),
+  );
+
+  $form['standard_hours_section']['tuesday'] = array(
+    '#required' => '0',
+    '#description' => t('example : 7:30am - 12:00pm; 1:00pm - 5:00pm'),
+    '#weight' => '1',
+    '#type' => 'textfield',
+    '#title' => t('Tuesday'),
+  );
+
+  $form['standard_hours_section']['wednesday'] = array(
+    '#required' => '0',
+    '#description' => t('example : 7:30am - 3:45pm'),
+    '#weight' => '2',
+    '#type' => 'textfield',
+    '#title' => t('Wednesday'),
+  );
+
+  $form['standard_hours_section']['thursday'] = array(
+    '#required' => '0',
+    '#description' => t('example: 8:30pm - 5:00pm'),
+    '#weight' => '3',
+    '#type' => 'textfield',
+    '#title' => t('Thursday'),
+  );
+
+  $form['standard_hours_section']['friday'] = array(
+    '#required' => '0',
+    '#description' => t('example: 9:00am - 9:00pm
+  '),
+    '#weight' => '4',
+    '#type' => 'textfield',
+    '#title' => t('Friday'),
+  );
+
+  $form['standard_hours_section']['saturday'] = array(
+    '#required' => '0',
+    '#description' => t('ex: Closed'),
+    '#weight' => '5',
+    '#type' => 'textfield',
+    '#title' => t('Saturday'),
+  );
+
+  $form['standard_hours_section']['sunday'] = array(
+    '#required' => '0',
+    '#description' => t('ex: Closed'),
+    '#weight' => '6',
+    '#type' => 'textfield',
+    '#title' => t('Sunday'),
+  );
+
+  $form['exception_hours_section'] = array(
+    '#weight' => '2',
+    '#description' => t('Hours outside of the normal semester hours. i.e holidays, early closures, late opening etc....'),
+    '#type' => 'fieldset',
+    '#title' => t('Exception Hours'),
+    '#collapsible' => '1',
+    '#collapsed' => '0',
+  );
+
+  $form['exception_hours_section']['exception_date'] = array(
+    '#type' => 'date_popup',
+    '#title' => t('Date'),
+    '#description' => t('Date of exception hours'),
+    '#required' => '0',
+    '#date_format' => $format,
+    '#date_year_range' => '-100:+10',
+  );
+
+  $form['exception_hours_section']['hours'] = array(
+    '#required' => '0',
+    '#description' => t('You can enter hours of operation, 7:30am - 5:00pm, or Closed'),
+    '#weight' => '0',
+    '#type' => 'textfield',
+    '#title' => t('Hours'),
+  );
+
+  $form['exception_hours_section']['message'] = array(
+    '#required' => '0',
+    '#description' => t('Reason for special hours. Spring Break, Exams, etc...'),
+    '#weight' => '1',
+    '#type' => 'textfield',
+    '#title' => t('Message'),
+  );
+
+  $form['submit'] = array(
+    '#weight' => '2',
+    '#type' => 'submit',
+    '#value' => t('Add hours'),
+  );
+
+  return $form;
+}
+
+/**
+ *  Validation handler for the library_hours_form.
+ *  
+ *  todo: validate if message filled not hours fill out hours / if 
+ *  date not hours fill out hours/ if hours not date fill out date
+ *  if semester end date earlier than semester start date alert
+ *  regular expression to check hours input for either "closed" or time or time range
+ *  or equal today's date
+ *
+ * if any date field equal today's date be sure to check if this is correct before submitting.
+ */
+function library_hours_form_validate($form, &$form_state) {
+
+  //print('<pre>'.print_r($form_state['values'],1).'</pre>');die();
+  //validation rules go here
+  //
+  //if hours or exception date or message
+  if ((empty($form_state['values']['exception_date']) && (!empty($form_state['values']['hours']) || !empty($form_state['values']['message'])))
+  || (empty($form_state['values']['hours']) && (!empty($form_state['values']['exception_date']) || !empty($form_state['values']['message'])))) {
+
+    form_set_error('message', t('Exception Date field and Exception hours field are required.'));
+    return FALSE;
+  }
+
+  //if any standard hours semestar_start and semestar_end are required
+  if ((!empty($form_state['values']['monday']) || !empty($form_state['values']['tuesday']) || !empty($form_state['values']['wednesday'])
+  || !empty($form_state['values']['thursday']) || !empty($form_state['values']['friday']) || !empty($form_state['values']['saturday'])
+  || !empty($form_state['values']['sunday'])) && (empty($form_state['values']['semester_start']) || empty($form_state['values']['semester_end']))) {
+
+    form_set_error('message', t('Semester Start Date field and Semester End Date field are required.'));
+    return FALSE;
+  }
+
+  //if semester end date less than semester_start date alert
+  if ($form_state['values']['semester_start'] > $form_state['values']['semester_end']) {
+
+    form_set_error('message', t('Semester Start Date field  value is greater than Semester End Date field value.'));
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
+/**
+ * Submit handler for the library_hours_form. Inserts entries into the database
+ */
+function library_hours_form_submit($form, &$form_state) {
+
+  $department = $form_state['values']['department'];
+  variable_set('library_hours_department', $department);
+
+  if (!empty($form_state['values']['monday']) || !empty($form_state['values']['tuesday']) || !empty($form_state['values']['wednesday'])
+    || !empty($form_state['values']['thursday']) || !empty($form_state['values']['friday']) || !empty($form_state['values']['saturday'])
+    || !empty($form_state['values']['sunday'])) {
+
+      $days = array('monday','tuesday','wednesday','thursday','friday','saturday','sunday');
+      $standard_days_array = array();
+      //insert standard hours into library_hours_standard table
+      foreach ($days as $day){
+      
+        if (empty($form_state['values'][$day])){
+          //read value from db
+           $standard_days_array[$day] = _library_hours_form_read($department, $day);
+          
+        }
+        elseif (!empty($form_state['values'][$day])){
+          //write standard hours to library_hours_standard table
+          $standard_days_array[$day] = strtolower($form_state['values'][$day]);
+          _library_hours_form_write($department, $day, $form_state['values'][$day]);
+        }
+        else{
+          //there's a problem
+        }
+      }
+      //print('<pre>'.print_r($standard_days_array,1).'</pre>');die();
+
+      $semester_start_date = $form_state['values']['semester_start']; 
+      $start_date_array = explode('-', $semester_start_date);
+      $semester_start_year = $start_date_array[0];
+      $semester_start_month = $start_date_array[1];
+      $semester_start_day = $start_date_array[2];
+
+      $semester_end_date = $form_state['values']['semester_end']; 
+      $end_date_array = explode('-', $semester_end_date);
+      $semester_end_year = $end_date_array[0];
+      $semester_end_month = $end_date_array[1];
+      $semester_end_day = $end_date_array[2];
+      
+      
+      //insert all dates for the semester
+      //loop to enter standard hours incrementally for input semester start through semester end date
+      for ($month = $semester_start_month; $month <= $semester_end_month ; $month++ ) {
+        if ($month == $semester_end_month) { 
+          $last_day_of_month = $semester_end_day;
+        }
+        else {
+
+          $last_day_of_month = date('t', mktime(0,0,0,$month,1,$semester_start_year));
+
+        }
+
+        for ($day = $semester_start_day; $day <= $last_day_of_month; $day++) {
+            //match day of week to date
+            $day_of_week = strtolower(date("l", mktime(0,0,0,$month,$day,$semester_start_year)));
+            $date = $semester_start_year . '-' . $month . '-' . $day;
+            //echo 'Date : ' . $date;
+            _library_hours_form_write_full_schecule($department, $date, $standard_days_array[$day_of_week], 0);
+
+        }
+        $semester_start_day = 1; //reset day to beginning of month for new month
+      }
+  }
+  //add exception hours
+  //todo check if message, hours, exception_date are !empty if so then add them to the table via the 
+  //_library_hours_form_write_full_schedule($date, $hours,$message)
+   $message = (!empty($form_state['values']['message'])) ? $form_state['values']['message'] : NULL;
+   if (!empty($form_state['values']['hours']) && !empty($form_state['values']['exception_date'])) {
+      _library_hours_form_write_full_schecule($department, $form_state['values']['exception_date'], $form_state['values']['hours'], 1, $message);
+   }
+
+  //success
+  drupal_set_message(t('Your hours have been added.'));
+}
+
+/**
+ * Read standard hours from library_hours_standard for day param.
+ * @param  string $day    day of week
+ * @return string $hours  hours
+ */
+function _library_hours_form_read($department, $day) {
+  db_set_active('hours');
+
+  $department_table = $department . '_hours_standard';
+  $result = db_query("SELECT hours FROM {$department_table} WHERE day = :day", array(':day' => $day))->fetchObject();
+  return($result->hours);
+
+  db_set_active();
+}
+
+/**
+ * Write standard hours to library_hours_standard for day param.
+ * @param  string $day  day of week
+ */
+function _library_hours_form_write($department, $day, $hours) {
+  db_set_active('hours');
+  $department_table = $department . '_hours_standard';
+  $bh_id = db_merge($department_table)
+      ->key(array('day' => $day))
+      ->insertFields(array(
+        'day' =>  $day,
+        'hours' => $hours,
+      ))
+      ->updateFields(array(
+        'hours' => $hours,
+      ))
+      ->execute();
+  db_set_active();
+}
+
+/**
+ * Write schedule date to library_hours table
+ * @param  date     $date   date
+ * @param  string   $hours  hours for date param
+ * 
+ */
+function _library_hours_form_write_full_schecule($department, $date, $hours, $is_exception, $message = null) {
+  db_set_active('hours');
+  //echo $date . ' date '; die();
+  $department_table = $department . '_hours';
+  switch ($is_exception) {//not exception
+
+    case 0: {
+      $query = db_select($department_table, 'lh')
+        ->fields('lh')
+        ->condition('lh.exception', 0, '=')
+        ->condition('date', $date, '=');
+      
+        $result = $query->execute()->fetchAssoc();
+       
+      if (!is_bool($result)) {//if date exists update
+        
+        $update = db_update($department_table)
+          ->fields(array(
+              'hours' => strtolower($hours),
+              'message' => $message,
+              'exception' => 0,
+            ))
+          ->condition('date', $date, '=')
+          ->condition('exception', 0, '=')
+          ->execute();
+       
+          //if($this_result = $update->execute()){echo 'query executed <br />';}
+      }
+      else {//else insert new date
+        $insert = db_insert($department_table)
+          ->fields(array(
+              'date' => $date,
+              'hours' => $hours,
+              'message' => $message,
+              'exception' => 0,
+            ))
+          ->execute();
+      }
+    }
+    break;
+
+    case 1: {//is exception
+      $bh_id = db_merge($department_table)
+      ->key(array('date' => $date,))
+      ->insertFields(array(
+        'date' =>  $date,
+        'hours' => $hours,
+        'message' => $message,
+        'exception' => 1,
+      ))
+      ->updateFields(array(
+        'hours' => $hours,
+        'message' => $message,
+        'exception' => 1,
+      ))
+      ->execute();
+    }
+    break;
+
+    default: print('something went wrong in switch'); die();
+  }
+  db_set_active();
+}
+
+/**
+ * View form submissions
+ * @return array drupal theme array
+ */
+/*function show_library_hours_submissions(){
+
+  $query = db_select('library_hours', 'bh');//->extend('PagerDefault');
+  $query
+    ->fields('bh', array('id','date','hours','message', 'exception'))
+    ->orderBy('date', 'DESC');
+    //->limit(30);
+
+  $results = $query->execute()->fetchAll();
+  
+  $header = array(t('id'), t('date'), t('hours'), t('message'), t('is_exception'));
+
+  $rows = array();
+
+  foreach ($results as $result){
+    $rows[] = array(
+      check_plain($result->id),
+      check_plain($result->date),
+      check_plain(Ucwords($result->hours)),
+      check_plain($result->message),
+      check_plain($result->exception),
+    );
+  }
+  return theme('table', array('header' => $header, 'rows' => $rows));
+
+}*/
+
+/**
+ * Returns page title based on url args.
+ */
+function library_hours_title_callback($args) {
+
+  $page_title='';
+
+  switch($args){
+    case 'howard': $page_title = 'Howard-Tilton Library Hours';
+          break;
+    case 'research_desk': $page_title = 'Howard-Tilton Research Help Desk Hours';
+          break;
+    case 'architecture': $page_title = 'Architecture Library Hours';
+          break;
+    case 'lal': $page_title = "The Latin American Library [Office] Hours";
+          break;
+    case 'larc': $page_title = "Louisiana Research Collection (LaRC) Hours";
+          break;
+    case 'microforms': $page_title = "Microforms & Newspapers Hours";
+          break;
+    case 'mmc': $page_title = "Music & Media Center Hours";
+          break;
+    case 'hogan': $page_title = "Hogan Jazz Archive Hours";
+          break;
+    case 'rare_books': $page_title = "Rare Books Hours";
+          break;
+    case 'seaa': $page_title = "Southeastern Architectural Archive (SEAA) Hours";
+          break;
+    case 'univ_archives': $page_title = "University Archives Hours";
+          break;
+    default: $page_title = "Hours";
+  }
+
+  return($page_title);
+}
+
+/**
+ * Returns markup for calendar page.
+ */
+function library_hours_calendar_page($args) {
+  
+  $path = $GLOBALS['base_root']. $GLOBALS['base_path'];
+
+  $selector = 'library_hours_calendar_div';
+ 
+  $settings = array(
+    //set any custom settings that you need to access in javascript here
+      'mymodule' => array(
+        'calendar' => array(
+          'calendar_selector' => "#$selector",
+          'project_events_json_url' => $path.'ajax/library_hours/calendar/'.$args,
+        ),
+      ),
+      'basePath' => $path,
+  );
+ 
+  $output['calendar'] = array(
+    '#markup' => '<div id="' . $selector . '">  </div>',
+    '#attached' => array(
+      'library' => array(
+        array('library_hours', 'fullcalendar'),
+      ),
+      'js' => array(
+        drupal_get_path('module', 'library_hours') . '/js/library_hours.calendar.js' => array(),
+        drupal_get_path('module', 'library_hours') . '/js/fullcalendar.min.js' => array(),
+        
+        array('data' => $settings, 'type' => 'setting'),
+      ),
+      'css' => array(
+        drupal_get_path('module', 'library_hours') . '/css/fullcalendar.css' => array(),
+      ),
+    ),
+  );
+  //debug($output);
+  return $output;
+ 
+}
+
+/**
+ * Implements hook_library
+ */
+function library_hours_library() {
+  
+  if($fc_path = libraries_get_path('fullcalendar-1.6.4')) {
+    
+    $items['fullcalendar'] = array(
+      'title' => 'FullCalendar',
+      'version' => '1.6.4',
+      'js' => array(
+        $fc_path . '/fullcalendar/fullcalendar.min.js' => array(),
+      ),
+      'css' => array(
+        $fc_path . '/fullcalendar/fullcalendar.css' => array(),
+      ),
+      'dependencies' => array(
+        array('system', 'ui'),
+        array('system', 'ui.draggable'),
+        array('system', 'drupal.ajax'),
+        array('system', 'jquery.form'),
+      ),
+    );
+
+  }
+}
+
+
+
+/**
+ * Ajax callback to return project events.
+ */
+function library_hours_ajax_calendar_events($department) {
+  db_set_active('hours');
+
+  //$department_table = variable_get('library_hours_department') . '_hours';
+  $department_table = $department . '_hours';
+
+  drupal_add_library('system', 'drupal.ajax');
+  $events = array();
+ 
+    // Get info from database
+    $query = db_select($department_table, 'lh');
+    $query
+      ->fields('lh', array('id','date','hours','message'))
+      //->condition('date', 'value', array($start, $end), 'BETWEEN')
+      ->orderBy('date', 'DESC');
+      $results = $query->execute();
+ 
+  foreach ($results as $row) {
+    $title = UCwords($row->hours);
+    if ($row->message != null){$title .= ' (' . Ucwords($row->message) . ')';}
+    $event = (object) array(
+      //'id' => $row->id,
+      'title' => check_plain($title),
+      'description' => check_plain($row->message), 
+      'start' => check_plain($row->date),
+      'end' => check_plain($row->date),
+      'color' => 'transparent',  //#F0F0F0
+      'textColor' => '#000',
+
+    );
+ 
+    $events[] = $event;
+ 
+  }
+  echo drupal_json_encode($events);
+  db_set_active();
+  drupal_exit();
+}

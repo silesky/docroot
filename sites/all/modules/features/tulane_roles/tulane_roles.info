@@ -1,0 +1,17 @@
+name = Tulane Roles
+description = Defines the roles
+core = 7.x
+package = Tulane Required
+version = 7.x-1.0
+project = tulane_roles
+dependencies[] = features
+dependencies[] = role_export
+features[features_api][] = api:2
+features[user_role][] = administrator
+features[user_role][] = alumni
+features[user_role][] = author
+features[user_role][] = developer
+features[user_role][] = faculty
+features[user_role][] = publisher
+features[user_role][] = student
+features_exclude[dependencies][role_export] = role_export

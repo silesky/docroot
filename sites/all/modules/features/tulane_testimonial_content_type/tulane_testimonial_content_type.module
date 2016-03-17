@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Tulane Testimonial Content Type feature.
+ */
+
+include_once 'tulane_testimonial_content_type.features.inc';

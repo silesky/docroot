@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Tulane Event Content Type feature.
+ */
+
+include_once 'tulane_event_content_type.features.inc';

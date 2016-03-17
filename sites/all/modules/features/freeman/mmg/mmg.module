@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MMG feature.
+ */
+
+include_once 'mmg.features.inc';

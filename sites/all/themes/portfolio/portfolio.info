@@ -1,0 +1,15 @@
+name = Portfolio
+description = A single page, custom theme
+core = 7.x
+
+
+; CSS
+stylesheets[all][] = assets/css/main.css
+
+; JS
+scripts[] = assets/js/modernizr.js
+
+; Regions
+regions[featured] = Featured
+regions[content] = Content
+regions[sidebar] = Sidebar

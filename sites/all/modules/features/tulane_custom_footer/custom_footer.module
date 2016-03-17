@@ -1,0 +1,96 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+
+include_once 'custom_footer.features.inc';
+
+function custom_footer_get_footer($path) {
+
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')    // get nodes
+        ->entityCondition('bundle', 'tulane_custom_footer') // of the custom footer type
+        ->propertyCondition('status', 1)                    // which are published
+        ->fieldCondition('field_url_assigned_to', 'value', $path, 'CONTAINS') // and contain the path we're testing
+        ->propertyOrderBy('changed', 'DESC')
+        ->range(0,1);
+ 
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+  $nids = array_keys($result['node']);
+  $node = node_load(current($nids));
+  return $node;
+  } else {
+	// check and see if there's a match at the directory level
+	$path2='';
+	$p = explode("/",$path);
+	$c = substr_count($path,"/");
+	$x=0;
+
+	while($x < $c){
+	$path2 .= $p[$x] . "/";
+	$x++;
+	}
+
+	$query2 = new EntityFieldQuery();
+  	$query2->entityCondition('entity_type', 'node')    // get nodes
+        ->entityCondition('bundle', 'tulane_custom_footer') // of the custom footer type
+        ->propertyCondition('status', 1)                    // which are published
+        ->fieldCondition('field_url_assigned_to', 'value', $path2, 'CONTAINS') // and contain the path we're testing
+        ->propertyOrderBy('changed', 'DESC')
+        ->range(0,1);
+  	$result2 = $query2->execute();
+		
+  		if (isset($result2['node'])) {
+  		$nids = array_keys($result2['node']);
+  		$node = node_load(current($nids));
+  		return $node;
+		} else {
+		$object = new stdClass();
+		$object->field_display_name['und'][0]['value'] = "Tulane University";
+		$object->field_email['und'][0]['value'] = "pr@tulane.edu";
+		$object->field_map_address['und'][0]['value'] = "6823 St. Charles Avenue, New Orleans, LA 70118";
+		$object->field_phone['und'][0]['value'] = "504-862-5000";
+		$object->body['und'][0]['value'] = "";
+		return $object;
+		}
+  	}
+}
+
+
+function custom_footer_block_info() {
+  return array(
+    'custom_footer_custom_footer' => array(
+      'info' => t('Custom footer'),
+    ),
+  );
+}
+
+
+
+function custom_footer_block_view($delta = '') {
+  if ($delta == 'custom_footer_custom_footer') {
+    $block = array();
+ 
+    $block['subject'] = ''; // presumably you don't want a heading on the footer
+    $block['content'] = array(
+      '#theme' => 'custom_footer_custom_footer',
+      '#node' => custom_footer_get_footer(current_path()),
+    );
+    return $block;
+  }
+}
+
+
+
+
+function custom_footer_theme($existing, $type, $theme, $path) {
+  return array(
+    'custom_footer_custom_footer' => array(
+      'variables' => array('node' => FALSE),
+      'template' => 'custom-footer-custom-footer', // do not add the file extension here
+    ),
+  );
+}

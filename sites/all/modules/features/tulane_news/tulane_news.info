@@ -1,0 +1,8 @@
+name = Tulane News
+core = 7.x
+package = Tulane Features
+version = 7.x-1.0
+project = tulane_news
+dependencies[] = tulane_article_content_type
+dependencies[] = tulane_news_view
+features[features_api][] = api:2

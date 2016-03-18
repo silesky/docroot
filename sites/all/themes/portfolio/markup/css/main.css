@@ -1,8 +1,54 @@
 
+.tmp {
+	color: red;
+	font-weight: bold;
+	font-size: 1.5em;
+	font-style: italic;
+	font-family: courier;
+}
 body {
 	/* background-image:url("../images/container_page_large.jpg"); */
 	background-color: black;
 	color: white;
 }
 
+header.header-container {
 
+}
+
+
+nav.header-nav-menu ul li {
+
+}
+
+.page {
+
+}
+
+.page-calendar {
+
+}
+
+.event {
+
+}
+
+.event-date {
+
+}
+
+.event-title {
+
+}
+
+.event-content {
+
+}
+
+footer.footer-container {
+
+}
+
+.footer-nav-menu {
+
+}

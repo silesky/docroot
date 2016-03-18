@@ -1,5 +1,8 @@
 
 body {
-	background-image:url("../images/container_page_large.jpg");
-
+	/* background-image:url("../images/container_page_large.jpg"); */
+	background-color: black;
+	color: white;
 }
+
+

@@ -25,7 +25,9 @@ menu,
 nav,
 section,
 summary {
-  display: block;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
 audio,
 canvas,

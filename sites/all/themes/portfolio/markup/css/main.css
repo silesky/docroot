@@ -13,25 +13,27 @@ body {
 }
 
 header.header-container {
-
 }
-
-
-nav.header-nav-menu ul {
+header.header-container ul {
 	display: flex;
-	justify-content: center;
-	flex-direction: row
+	flex-direction:row;
 
 }
-
 nav.header-nav-menu ul li {
-
 	list-style-type: none;
-	margin: 0 1%;
+	margin: 0 3%;
+
 }
 
+.social {
+	display: flex;
 
+}
 
+.social i {
+	margin: 0 3%;
+
+}
 .page {
 
 }

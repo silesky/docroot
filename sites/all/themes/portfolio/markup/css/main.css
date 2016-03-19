@@ -7,32 +7,31 @@
 	font-family: courier;
 }
 body {
-	/* background-image:url("../images/container_page_large.jpg"); */
+	/*background-image:url("../images/container_page_large.jpg"); */
 	background-color: black;
 	color: white;
+
 }
 
 header.header-container {
 }
 header.header-container ul {
-	display: flex;
-	flex-direction:row;
-
 }
 nav.header-nav-menu ul li {
 	list-style-type: none;
-	margin: 0 3%;
-
+	margin: 0 2%;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .social {
-	display: flex;
-
+	display: inline-block;
 }
 
 .social i {
 	margin: 0 3%;
-
+	vertical-align: middle;
+	display: inline-block;
 }
 .page {
 

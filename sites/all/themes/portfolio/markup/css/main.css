@@ -13,13 +13,20 @@ body {
 
 }
 
-header.header-container {
+nav.header-nav-menu {
+	display: block;
+	width: 90%;
+	text-align: center;
+	margin: auto;
 }
-header.header-container ul {
+
+header.header-container {
+
 }
 nav.header-nav-menu ul li {
+	
 	list-style-type: none;
-	margin: 0 2%;
+	margin: 0 1%;
 	display: inline-block;
 	vertical-align: middle;
 }

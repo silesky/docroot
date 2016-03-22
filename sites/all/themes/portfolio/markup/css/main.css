@@ -19,6 +19,16 @@ body {
 	background-image:url("../images/container_page_large.jpg");
 	background-repeat: no-repeat;
 }
+
+.header-nav-container {
+	position: fixed;
+	z-index: 9999;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: black;
+}
+
 nav.header-nav-menu {
 	display: block;
 	width: 90%;

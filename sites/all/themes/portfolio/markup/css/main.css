@@ -88,9 +88,26 @@ nav.header-nav-menu ul li {
 
 
 footer.footer-container {
+}
+footer.footer-container ul li {
+	list-style-type: none;
+	margin: 0 1%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+ /* same as .header-nav-menu */
+nav.footer-nav-menu {
+    
+	width: 90%;
+	text-align: center;
+	margin: auto;
 
 }
 
-.footer-nav-menu {
-
+.footer-contact {
+	    width: 16%;
+    	margin: auto;
+    	text-align: center;
 }
+

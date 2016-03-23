@@ -1,1 +1,15 @@
-live-server /Users/ssilesky/projects/site-factory-portfolio/docroot/sites/all/themes/portfolio
+Classes:
+
+.social
+.sponsors
+
+div
+h2 (1 on each page)
+ul li -- for sponsors, etc
+.navigation-bar - top bar including icons
+.navigation-menu ul li 
+.page signifying a seperate page
+.page-1 .page-2 .page-3 etc
+.calendar page
+
+

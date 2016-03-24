@@ -22,6 +22,10 @@ section {
 
 }
 
+section {
+
+}
+
 .header-image {
   position: relative;
   width: 100%;
@@ -90,7 +94,17 @@ nav.header-nav-menu ul li {
 	display: inline-block;
 }
 
-.calendar-container{
+
+.text-container {
+	-webkit-column-count: 2;
+	/* width of each column. e.g 
+	  column-count: 2
+	  column-width: 500px
+	  columns will combine when viewport < 1000px */
+	-webkit-column-width: 400px;
+	-webkit-column-gap: 20px;
+}
+.calendar-container {
 
 }
 

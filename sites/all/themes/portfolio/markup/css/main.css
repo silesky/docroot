@@ -54,6 +54,7 @@ nav.header-nav-menu ul li {
 	margin: 0 1%;
 	display: inline-block;
 	vertical-align: middle;
+	cursor: pointer;
 }
 
 .social {

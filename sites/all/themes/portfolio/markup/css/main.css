@@ -13,6 +13,15 @@ body {
 
 }
 
+main {
+
+}
+
+section {
+	border-bottom: 1px solid white;
+
+}
+
 .header-image {
   position: relative;
   width: 100%;
@@ -80,10 +89,6 @@ nav.header-nav-menu ul li {
 	vertical-align: middle;
 	display: inline-block;
 }
-.page {
-
-}
-
 
 .calendar-container{
 

@@ -18,10 +18,14 @@ body {
   height: 1000px;
   background-image: url("../images/container_page_large.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
-  background-origin: center;
-  background-attachment: fixed;
+  /* background-origin: center; */
+  /* how to move the bg relative to the viewport 
+	. scroll - default 
+	. fixed - stays fixed and the menu / text scrolls over it. inauguration view.
+  */
+  background-attachment: scroll;
 }
 
 .header-nav-container {

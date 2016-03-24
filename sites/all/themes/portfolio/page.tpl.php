@@ -1,10 +1,8 @@
-<!DOCTYPE html>
 <html>
 <head>
- <!-- <link rel="stylesheet" type="text/css" href="../assets/css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/main.css"> -->
-  
+  <link rel="stylesheet" type="text/css" href="./css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="./css/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="./css/main.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <title>Static Drupal Theme</title>
 </head>

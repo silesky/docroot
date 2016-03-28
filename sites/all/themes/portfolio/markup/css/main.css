@@ -7,7 +7,7 @@
 	font-family: courier;
 }
 body {
-	
+
 	background-color: black;
 	color: white;
 
@@ -35,8 +35,8 @@ section {
   background-size: cover;
   background-position: center;
   /* background-origin: center; */
-  /* how to move the bg relative to the viewport 
-	. scroll - default 
+  /* how to move the bg relative to the viewport
+	. scroll - default
 	. fixed - stays fixed and the menu / text scrolls over it. inauguration view.
   */
   background-attachment: fixed;
@@ -76,7 +76,7 @@ header.header-container {
 
 }
 nav.header-nav-menu ul li {
-	
+
 	list-style-type: none;
 	margin: 0 1%;
 	display: inline-block;
@@ -97,7 +97,7 @@ nav.header-nav-menu ul li {
 
 .text-container {
 	-webkit-column-count: 2;
-	/* width of each column. e.g 
+	/* width of each column. e.g
 	  column-count: 2
 	  column-width: 500px
 	  columns will combine when viewport < 1000px */
@@ -108,7 +108,7 @@ nav.header-nav-menu ul li {
 
 }
 
-.event {
+.event-container {
 
 }
 
@@ -136,7 +136,7 @@ footer.footer-container ul li {
 
  /* same as .header-nav-menu */
 nav.footer-nav-menu {
-    
+
 	width: 90%;
 	text-align: center;
 	margin: auto;
@@ -148,4 +148,3 @@ nav.footer-nav-menu {
     	margin: auto;
     	text-align: center;
 }
-

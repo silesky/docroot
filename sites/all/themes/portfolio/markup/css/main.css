@@ -46,16 +46,18 @@ section {
   background-attachment: fixed;
 }
 
+/* should be 250-500px */
 .header-image-logo-container {
-	top: 40%;
-	left: 40%;
-	right: 40%;
-	position: absolute;
+	  width: 500px;
+		margin-left: -250px;
+    top: 30%;
+		position: absolute;
+    left: 50%;
+
 
 }
 
 .header-image-logo {
-	margin: auto;
 
 }
 

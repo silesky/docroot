@@ -6,7 +6,6 @@ core = 7.x
 ; CSS
 
 stylesheets[all][] = assets/css/normalize.css
-stylesheets[all][] = assets/css/bootstrap/css/bootstrap.min.css
 stylesheets[all][] = assets/css/main.css
 
 

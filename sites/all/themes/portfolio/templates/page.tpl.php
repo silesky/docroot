@@ -6,8 +6,10 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="header-nav-container">
-			<nav class="header-nav-menu" >
+      <nav class="header-nav-menu" >
+        <!--
 				<ul>
 					<li><a href="#">About</a></li>
 					<li><a href="#">Exhibit</a></li>
@@ -19,9 +21,13 @@
 					<li><i class="fa fa-3x fa-facebook-square"></i></li>
 					<li><i class="fa fa-3x fa-twitter-square"></i></li>
 					<li><i class="fa fa-3x fa-youtube-square"></i></li>
-
 				</ul>
-
+-->
+      <?php print theme('links__system_main_menu', array(
+        'links' => $main_menu,
+      'attributes' =>
+      array('class' => array('stuff'))));
+        ?>
 			</nav>
 		</div>
 	</div>

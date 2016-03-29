@@ -52,7 +52,9 @@ section {
 		margin-left: -250px;
     top: 30%;
 		position: absolute;
-    left: 50%;``
+    left: 50%;
+
+
 }
 
 .header-image-logo {
@@ -75,8 +77,9 @@ nav.header-nav-menu {
 	margin: auto;
 }
 
-nav.header-nav-menu a {
+nav.header-nav-menu ul li a {
 	text-decoration: none;
+	color: white;
 }
 
 

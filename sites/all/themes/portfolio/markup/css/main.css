@@ -77,8 +77,9 @@ nav.header-nav-menu {
 	margin: auto;
 }
 
-nav.header-nav-menu a {
+nav.header-nav-menu ul li a {
 	text-decoration: none;
+	color: white;
 }
 
 

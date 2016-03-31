@@ -1,5 +1,4 @@
 <?php
-print "page--node-content-microsite rendering -seth";
 /**
  * @file
  * Default theme implementation to display a node.

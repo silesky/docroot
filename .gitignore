@@ -6,3 +6,4 @@ sites/*/files
 sites/*/private
 
 sites/all/themes/portfolio/misc.txt
+sites/all/themes/portfolio/tmp

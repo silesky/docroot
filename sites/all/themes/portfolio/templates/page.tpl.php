@@ -34,10 +34,11 @@
 </header>
 
 <main>
+
 	/* render content */
 
 	<?php print render($page['content']); ?>
-
+<!--
 	<section>
 		<div class="tmp">NEW PAGE</div>
 		<div class="text-container">
@@ -112,7 +113,7 @@
 					</div>
 				</div>
 				<section>
-
+-->
 
 				</main>
 

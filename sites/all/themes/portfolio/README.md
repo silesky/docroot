@@ -7,4 +7,3 @@
    - Menu item selector -> *blank*
    - Tag -> h2
    - Homepage -> *checked*
-- Menu Attributes https://www.drupal.org/project/menu_attributes

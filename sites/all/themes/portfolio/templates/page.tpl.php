@@ -26,7 +26,7 @@
       <?php print theme('links__system_main_menu', array(
         'links' => $main_menu,
       'attributes' =>
-      array('class' => array('stuff'))));
+      array('class' => array('main-menu'))));
         ?>
 			</nav>
 		</div>

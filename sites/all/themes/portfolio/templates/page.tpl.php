@@ -1,8 +1,7 @@
  	<?php
   // goal: to get the url from 'field_large_background_image'
 	//echo "get123" + var_dump(get_defined_vars());
-	echo '** test123 **---> ';
-  var_dump($test_me);
+  echo "page123" . $test_me;
 ?>
 	<header class="header-container">
 		<div class="header-image">

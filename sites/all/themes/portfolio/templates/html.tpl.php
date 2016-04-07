@@ -1,5 +1,6 @@
 <?php
-
+echo "test123";
+var_dump($test);
 /**
  * @file
  * Default theme implementation to display the basic html structure of a single

@@ -1,6 +1,8 @@
 <?php
-echo "test123";
-var_dump($test);
+echo "html123";
+var_dump($test); //HELLO WORLD (html.tpl)
+echo "settings123";
+echo $portfolio_example;
 /**
  * @file
  * Default theme implementation to display the basic html structure of a single
@@ -38,7 +40,7 @@ var_dump($test);
  *   CSS.
  *
  * @see template_preprocess()
- * @see template_preprocess_html()
+ * @seeczz()
  * @see template_process()
  *
  * @ingroup themeable

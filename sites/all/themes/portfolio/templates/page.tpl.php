@@ -1,7 +1,27 @@
  	<?php
-  // goal: to get the url from 'field_large_background_image'
-	//echo "get123" + var_dump(get_defined_vars());
-  echo "page123" . $test_me;
+  echo "page123";
+  /*
+  $myMap =  field_info_field_map();
+  print_r($myMap[field_logo_image]);
+  print_r($myMap[field_large_background_image]);
+  */
+/*
+    //field_info_instances($entity_type) // entity type = header_images_microsite;
+    $instances = field_info_instances("node", header_images_microsite);
+    print_r($instances);
+
+    //print_r($instances['node']['header_images_microsite']['field_logo_image']);
+    //print_r($instances['node']['header_images_microsite']['field_large_background_image']);
+*/
+/*
+$myFieldArray = field_get_items('header_images_microsite');
+  $imageUrl = $myFieldArray[0][‘uri’];
+  print_r($myFieldArray);
+*/
+
+
+
+
 ?>
 	<header class="header-container">
 		<div class="header-image">
@@ -145,3 +165,9 @@
 							</div>
 
 						</footer>
+
+            <?php  echo
+            "<pre>" .
+            print_r(get_defined_vars())
+            . "</pre>";
+            ?>

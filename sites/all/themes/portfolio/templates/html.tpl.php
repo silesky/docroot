@@ -1,8 +1,5 @@
 <?php
 echo "html123";
-var_dump($test); //HELLO WORLD (html.tpl)
-echo "settings123";
-echo $portfolio_example;
 /**
  * @file
  * Default theme implementation to display the basic html structure of a single

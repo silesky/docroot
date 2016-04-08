@@ -17,4 +17,7 @@ scripts[] = assets/js/modernizr.js
 regions[content] = Content
 
 ; Settings
-settings[portfolio_example] = HELLO SETTINGS
+;  background image [1100 x 1577] and logo [495 x 330]
+; http://lorempixel.com/495/330/logo/ *AND*  http://lorempixel.com/1100/1577/Background/
+settings[portfolio_background] =
+settings[portfolio_logo] = 

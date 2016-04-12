@@ -1,5 +1,5 @@
  	<?php
-  echo "page123";
+
   /*
   $myMap =  field_info_field_map();
   print_r($myMap[field_logo_image]);
@@ -23,6 +23,17 @@ $myFieldArray = field_get_items('header_images_microsite');
 
 
 ?>
+<!--- . .  . . . . . . . . .. . . . .  tmp  . . .  . . . . . . . . .. . . . . . -->
+  <div class="tmp">
+    <?php
+  echo "page123...";
+  $me = theme_get_setting('portfolio_logo');
+  echo '$me is:' .
+  $me;
+  ?>
+  </div>
+
+  <!--- . . . .  . . . . . . . . .. . .  tmp  . . . . . . . . . . . . . . . . . . -->
 	<header class="header-container">
 		<div class="header-image">
 			<div class="header-image-logo-container">

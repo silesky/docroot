@@ -166,8 +166,9 @@ $myFieldArray = field_get_items('header_images_microsite');
 
 						</footer>
 
-            <?php  echo
+
+            <!--  echo
             "<pre>" .
             print_r(get_defined_vars())
             . "</pre>";
-            ?>
+          -->

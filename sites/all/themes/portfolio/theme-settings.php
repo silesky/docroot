@@ -40,7 +40,8 @@ function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
     '#type' => 'file',
     '#title' => t('Upload big spash page background'),
     '#maxlength' => 40,
-    '#description' => t("If you don't have direct file access to the server, use this field to upload your spash page background.")
+    '#description' => t("If you don't have direct file access to the server, use this field to upload your spash page background."),
+    '#default_value' => theme_get_setting('portfolio_background'),
   );
 
 

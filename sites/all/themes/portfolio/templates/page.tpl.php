@@ -34,22 +34,23 @@ $myFieldArray = field_get_items('header_images_microsite');
 $fid = theme_get_setting('portfolio_background');
 $uri = file_load($fid)->uri; //... public://bg.jpg
 $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
-$path = $wrapper->getDirectoryPath() . "/" . file_uri_target($uri); //sites/portfolio.dd/files/bg.jpg
+$bg_image_url_relative = $wrapper->getDirectoryPath() . "/" . file_uri_target($uri); //sites/portfolio.dd/files/bg.jpg
+
 $uploaded_image_name = file_uri_target($uri); // bg.jpg
 $bg_image_url_absolute = file_create_url($uri);
+$bg_image_url_absolute = 'http://portfolio.dd:8083/sites/all/themes/portfolio/assets/images/logo.png';
 
-// theme path ... http://portfolio.dd:8083/sites/all/themes/portfolio/assets/images/logo.png
-echo $path;
+echo $bg_image_url_absolute;
   ?>
   </div>
 
   <!--- . . . .  . . . . . . . . .. . .  tmp  . . . . . . . . . . . . . . . . . . -->
 	<header class="header-container">
 		<div style="background-image: url('<?php
-     print $path ?>');" class="header-image">
+     print $bg_image_url_relative; ?>');" class="header-image">
 			<div class="header-image-logo-container">
 				<div class="header-image-logo">
-					<img src="http://portfolio.dd:8083/sites/all/themes/portfolio/assets/images/logo.png" />
+					<img src="<?php echo $bg_image_url_absolute ?>" />
 				</div>
 			</div>
 		</div>

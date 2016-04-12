@@ -27,15 +27,25 @@ $myFieldArray = field_get_items('header_images_microsite');
   <div class="tmp">
     <?php
   echo "page123...";
-  $me = theme_get_setting('portfolio_logo');
-  echo '$me is:' .
-  $me;
+
+
+
+
+$fid = theme_get_setting('portfolio_background');
+$uri = file_load($fid)->uri; //... public://bg.jpg
+$wrapper = file_stream_wrapper_get_instance_by_uri($uri);
+$path = $wrapper->getDirectoryPath() . "/" . file_uri_target($uri); //sites/portfolio.dd/files/bg.jpg
+$uploaded_image_name = file_uri_target($uri); // bg.jpg
+$bg_image_url_absolute = file_create_url($uri);
+
+echo $path;
   ?>
   </div>
 
   <!--- . . . .  . . . . . . . . .. . .  tmp  . . . . . . . . . . . . . . . . . . -->
 	<header class="header-container">
-		<div class="header-image">
+		<div style="background-image: url('<?php
+     print $path ?>');" class="header-image">
 			<div class="header-image-logo-container">
 				<div class="header-image-logo">
 					<img src="images/logo.png" />

@@ -34,15 +34,24 @@
 
 	 **/
 
-//
+
 function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
-  $form['portfolio_background'] = array(
-    '#type' => 'file',
-    '#title' => t('Upload big spash page background'),
-    '#maxlength' => 40,
-    '#description' => t("If you don't have direct file access to the server, use this field to upload your spash page background."),
-    '#default_value' => theme_get_setting('portfolio_background'),
-  );
+  $default_file_dir_path = 'public://';
+  $doesDirectoryExistAndIsItWriteable = file_prepare_directory( $default_file_dir_path, FILE_CREATE_DIRECTORY);
+  if ($doesDirectoryExistAndIsItWriteable  == true) {
+    $form['portfolio_background'] = array(
+      '#type' => 'managed_file',
+      '#title' => t('Upload your big splash page background here'),
+      '#upload_location' => 'public://',
+      '#progress_message' => t('Please wait...'),
+      '#description' => t("If you don't have direct file access to the server, use this field to upload your spash page background."),
+      '#default_value' => theme_get_setting('portfolio_background'),
+      '#upload_validators' => array(
+               'file_validate_extensions' => array('gif png jpg jpeg'),
+               ),
+    );
+  }
+}
 
 
     $form['portfolio_logo'] = array(
@@ -51,5 +60,3 @@ function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
       '#maxlength' => 40,
       '#description' => t("If you don't have direct file access to the server, use this field to upload your logo.")
       );
-
-}

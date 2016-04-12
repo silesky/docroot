@@ -38,6 +38,7 @@ $path = $wrapper->getDirectoryPath() . "/" . file_uri_target($uri); //sites/port
 $uploaded_image_name = file_uri_target($uri); // bg.jpg
 $bg_image_url_absolute = file_create_url($uri);
 
+// theme path ... http://portfolio.dd:8083/sites/all/themes/portfolio/assets/images/logo.png
 echo $path;
   ?>
   </div>
@@ -48,7 +49,7 @@ echo $path;
      print $path ?>');" class="header-image">
 			<div class="header-image-logo-container">
 				<div class="header-image-logo">
-					<img src="images/logo.png" />
+					<img src="http://portfolio.dd:8083/sites/all/themes/portfolio/assets/images/logo.png" />
 				</div>
 			</div>
 		</div>

@@ -41,22 +41,25 @@ function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
   if ($doesDirectoryExistAndIsItWriteable  == true) {
     $form['portfolio_background'] = array(
       '#type' => 'managed_file',
-      '#title' => t('Upload your big splash page background here'),
+      '#title' => t('Upload large splash page background here (minimum 1000px wide)'),
       '#upload_location' => 'public://',
       '#progress_message' => t('Please wait...'),
-      '#description' => t("If you don't have direct file access to the server, use this field to upload your spash page background."),
+      '#description' => t("select an image file from your computer"),
       '#default_value' => theme_get_setting('portfolio_background'),
       '#upload_validators' => array(
                'file_validate_extensions' => array('gif png jpg jpeg'),
                ),
     );
+    $form['portfolio_logo'] = array(
+      '#type' => 'managed_file',
+      '#title' => t('Upload logo image here (max width 500px)'),
+      '#upload_location' => 'public://',
+      '#progress_message' => t('Please wait...'),
+      '#description' => t("select an image file from your computer"),
+      '#default_value' => theme_get_setting('portfolio_logo'),
+            '#upload_validators' => array(
+                     'file_validate_extensions' => array('gif png jpg jpeg'),
+                     ),
+          );
   }
 }
-
-
-    $form['portfolio_logo'] = array(
-      '#type' => 'file',
-      '#title' => t('Upload logo image'),
-      '#maxlength' => 40,
-      '#description' => t("If you don't have direct file access to the server, use this field to upload your logo.")
-      );

@@ -31,16 +31,26 @@ $myFieldArray = field_get_items('header_images_microsite');
 
 
 
-$fid = theme_get_setting('portfolio_background');
-$uri = file_load($fid)->uri; //... public://bg.jpg
-$wrapper = file_stream_wrapper_get_instance_by_uri($uri);
-$bg_image_url_relative = $wrapper->getDirectoryPath() . "/" . file_uri_target($uri); //sites/portfolio.dd/files/bg.jpg
+function getRelativePath($SETTINGSNAME) { //SETTINGSNAME = 'portfolio_background'
+  $fid = theme_get_setting($SETTINGSNAME);
+  $uri = file_load($fid)->uri; //... public://bg.jpg
+  $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
+  $image_url_relative = $wrapper->getDirectoryPath() . "/" . file_uri_target($uri);
+  return $image_url_relative;
+}
 
-$uploaded_image_name = file_uri_target($uri); // bg.jpg
-$bg_image_url_absolute = file_create_url($uri);
-$bg_image_url_absolute = 'http://portfolio.dd:8083/sites/all/themes/portfolio/assets/images/logo.png';
 
-echo $bg_image_url_absolute;
+function getAbsolutePath($SETTINGSNAME) {
+  $fid = theme_get_setting($SETTINGSNAME);
+  $uri = file_load($fid)->uri; //... public://bg.jpg
+  $image_url_absolute = file_create_url($uri);
+  return $image_url_absolute;
+}
+
+
+$bg_image_url_relative = getRelativePath('portfolio_background'); //sites/portfolio.dd/files/bg.jpg
+$logo_image_url_absolute = getAbsolutePath('portfolio_logo'); //http://portfolio.dd:8083/sites/portfolio.dd/files/logo_0.png
+
   ?>
   </div>
 
@@ -50,7 +60,7 @@ echo $bg_image_url_absolute;
      print $bg_image_url_relative; ?>');" class="header-image">
 			<div class="header-image-logo-container">
 				<div class="header-image-logo">
-					<img src="<?php echo $bg_image_url_absolute ?>" />
+					<img src="<?php echo $logo_image_url_absolute ?>" />
 				</div>
 			</div>
 		</div>

@@ -45,8 +45,10 @@ function getRelativePath($SETTINGSNAME) { //SETTINGSNAME = 'portfolio_background
 function getAbsolutePath($SETTINGSNAME) {
   $fid = theme_get_setting($SETTINGSNAME);
   $uri = file_load($fid)->uri; //... public://bg.jpg
-  $image_url_absolute = file_create_url($uri);
-  return $image_url_absolute;
+  if ($uri) {
+    $image_url_absolute = file_create_url($uri);
+    return $image_url_absolute;
+  }
 }
 
 
@@ -59,10 +61,23 @@ $logo_image_url_absolute = getAbsolutePath('portfolio_logo'); //http://portfolio
   <!--- . . . .  . . . . . . . . .. . .  tmp  . . . . . . . . . . . . . . . . . . -->
 	<header class="header-container">
 		<div style="background-image: url('<?php
-     print $bg_image_url_relative; ?>');" class="header-image">
+     if (isset($bg_image_url_relative)) {
+    print $bg_image_url_relative;
+  } else {
+    print '/sites/all/themes/portfolio/assets/images/default_splash.jpg';
+  }
+      ?>');" class="header-image">
 			<div class="header-image-logo-container">
 				<div class="header-image-logo">
-					<img src="<?php echo $logo_image_url_absolute ?>" />
+          
+					<img src="<?php
+             if (isset($logo_image_url_absolute)) {
+            print $logo_image_url_absolute;
+          } else {
+            print '/sites/all/themes/portfolio/assets/images/default_logo.png';
+          }
+
+          print $logo_image_url_absolute ?>" />
 				</div>
 			</div>
 		</div>

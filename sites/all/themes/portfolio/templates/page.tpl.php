@@ -42,8 +42,7 @@
         print $logo_image_url_absolute;
       } else {
         print '/sites/all/themes/portfolio/assets/images/default_logo.png';
-      }
-      print $logo_image_url_absolute ?>" />
+      } ?>" />
 
     </div>
   </div>

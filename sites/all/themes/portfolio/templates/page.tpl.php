@@ -35,8 +35,10 @@ function getRelativePath($SETTINGSNAME) { //SETTINGSNAME = 'portfolio_background
   $fid = theme_get_setting($SETTINGSNAME);
   $uri = file_load($fid)->uri; //... public://bg.jpg
   $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
-  $image_url_relative = $wrapper->getDirectoryPath() . "/" . file_uri_target($uri);
-  return $image_url_relative;
+    if ($wrapper) {
+      $image_url_relative = $wrapper->getDirectoryPath() . "/" . file_uri_target($uri);
+      return $image_url_relative;
+    }
 }
 
 

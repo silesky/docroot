@@ -22,12 +22,14 @@ main {
 }
 
 section {
+	background-color: #09331e;
 	border-bottom: 1px solid white;
-
 }
 
-section {
-
+/* every other page will show the bg, starting with the #2 */
+section:nth-child(2n+2) {
+		background: url('../images/default_bg.jpg');
+		width: 100%;
 }
 
 .header-image {

@@ -18,11 +18,13 @@ body {
 }
 
 main {
+	margin: auto;
 
 }
 
 section {
 	background-color: #09331e;
+	width: 100%;
 	border-bottom: 1px solid white;
 }
 
@@ -30,6 +32,11 @@ section {
 section:nth-child(2n+2) {
 		background: url('../images/default_bg.jpg');
 		width: 100%;
+}
+
+.section-content {
+		width: 90%;
+		margin: auto;
 }
 
 .header-image {
@@ -110,13 +117,23 @@ nav.header-nav-menu ul li {
 
 
 .text-container {
+		/* width of each column. e.g
+		column-count: 2
+		column-width: 500px
+		columns will combine when viewport < 1000px */
+
 	-webkit-column-count: 2;
-	/* width of each column. e.g
-	  column-count: 2
-	  column-width: 500px
-	  columns will combine when viewport < 1000px */
+	-ms-column-count: 2;
+	-moz-column-count: 2;
+	column-count: 2;
+	-moz-column-width: 400px;
 	-webkit-column-width: 400px;
+	-ms-column-width: 400px;
+	column-width: 400px;
+	-moz-column-gap: 20px;
 	-webkit-column-gap: 20px;
+	-ms-column-gap: 20px;
+	column-gap: 20px;
 }
 .calendar-container {
 

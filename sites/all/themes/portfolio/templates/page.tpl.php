@@ -21,9 +21,7 @@
 ?>
 <!--- . .  . . . . . . . . .. . . . .  tmp  . . .  . . . . . . . . .. . . . . . -->
 <div class="tmp">
-  <?php echo "page123...";
 
-  ?>
 </div>
 <!--- . . . .  . . . . . . . . .. . .  tmp  . . . . . . . . . . . . . . . . . . -->
 <header class="header-container">

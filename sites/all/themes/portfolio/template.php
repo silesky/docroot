@@ -8,6 +8,8 @@ function portfolio_preprocess_page(&$variables) {
   }
 
 }
+
+
 function portfolio_preprocess_html(&$variables) {
       $variables['test'] = "HELLO WORLD (html.tpl)";
 }
@@ -26,6 +28,23 @@ function portfolio_preprocess_node(&$variables) {
    }
 }
 
+function getRelativePathBySetting($SETTINGSNAME) { //SETTINGSNAME = 'portfolio_background'
+  $fid = theme_get_setting($SETTINGSNAME);
+  $uri = file_load($fid)->uri; //... public://bg.jpg
+  $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
+  if ($wrapper) {
+    $image_url_relative = $wrapper->getDirectoryPath() . "/" . file_uri_target($uri);
+    return $image_url_relative;
+  }
+}
+function getAbsolutePathBySetting($SETTINGSNAME) {
+  $fid = theme_get_setting($SETTINGSNAME);
+  $uri = file_load($fid)->uri; //... public://bg.jpg
+  if ($uri) {
+    $image_url_absolute = file_create_url($uri);
+    return $image_url_absolute;
+  }
+}
 function getRelativePathByUri($uri) {
     $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
     if ($wrapper) {

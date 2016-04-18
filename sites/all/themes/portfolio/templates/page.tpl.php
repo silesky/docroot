@@ -1,27 +1,12 @@
 <?php
-  function getRelativePath($SETTINGSNAME) { //SETTINGSNAME = 'portfolio_background'
-    $fid = theme_get_setting($SETTINGSNAME);
-    $uri = file_load($fid)->uri; //... public://bg.jpg
-    $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
-    if ($wrapper) {
-      $image_url_relative = $wrapper->getDirectoryPath() . "/" . file_uri_target($uri);
-      return $image_url_relative;
-    }
-  }
-  function getAbsolutePath($SETTINGSNAME) {
-    $fid = theme_get_setting($SETTINGSNAME);
-    $uri = file_load($fid)->uri; //... public://bg.jpg
-    if ($uri) {
-      $image_url_absolute = file_create_url($uri);
-      return $image_url_absolute;
-    }
-  }
-  $bg_image_url_relative = getRelativePath('portfolio_background'); //sites/portfolio.dd/files/bg.jpg
-  $logo_image_url_absolute = getAbsolutePath('portfolio_logo'); //http://portfolio.dd:8083/sites/portfolio.dd/files/logo_0.png
+  $bg_image_url_relative = getRelativePathBySetting('portfolio_background'); //sites/portfolio.dd/files/bg.jpg
+  $logo_image_url_absolute = getAbsolutePathBySetting('portfolio_logo'); //http://portfolio.dd:8083/sites/portfolio.dd/files/logo_0.png
 ?>
 <!--- . .  . . . . . . . . .. . . . .  tmp  . . .  . . . . . . . . .. . . . . . -->
 <div class="tmp">
+<?php
 
+?>
 </div>
 <!--- . . . .  . . . . . . . . .. . .  tmp  . . . . . . . . . . . . . . . . . . -->
 <header class="header-container">

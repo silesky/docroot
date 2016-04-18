@@ -1,4 +1,9 @@
 <?php
+  $bg_image_url_relative = getRelativePathByUri($background_image_uri); // :sites/portfolio.dd/files/bg_0.jpg
+?>
+
+<?php
+
 /**
  * @file
  * Default theme implementation to display a node.
@@ -90,7 +95,11 @@
 
 
 
-  <div class="content"<?php print $content_attributes; ?>>
+  <div class="content"<?php print $content_attributes; ?> style="background-image: url('<?php
+    if (isset($bg_image_url_relative)) {
+      print $bg_image_url_relative;
+    }
+    ?>');">
     <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['comments']);

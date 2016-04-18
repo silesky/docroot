@@ -152,6 +152,17 @@ nav.header-nav-menu ul li {
 
 }
 
+/* prefer to create a wrapper, but creating a field-collection-view.tpl.php broke stuff */
+.field-collection-view {
+   max-width: 400px;
+   display: inline-block;
+   vertical-align: top;
+}
+.field--calendar-microsite-wrapper {
+	margin: auto;
+	width: 90%;
+}
+
 .event-container {
 	max-width: 400px;
 	display: inline-block;

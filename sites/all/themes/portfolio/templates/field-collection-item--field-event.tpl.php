@@ -29,8 +29,10 @@
  */
 ?>
 <!-- remove wrapping divs for each item -->
+<div class="field-collection-item--field-event-wrapper">
 			<div class="event-container">
       	<h3 class="event-date">  <?php print render($content['field_event_date_text']); ?> </h3>
         <h3 class="event-title">  <?php print render($content['field_event_title']); ?> </h3>
         <div class="event-content">  <?php  print render($content['field_event_description']); ?> </div>
   	</div>
+	</div>

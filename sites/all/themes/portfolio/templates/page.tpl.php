@@ -59,8 +59,6 @@
 
 <main>
 
-  /* render content */
-
   <?php print render($page['content']); ?>
   <!--
   <section>

@@ -95,15 +95,16 @@
 
 
 
-  <div class="content"<?php print $content_attributes; ?> style="background-image: url('<?php
+  <div class="content"<?php print $content_attributes; ?> style="background: url('<?php
     if (isset($bg_image_url_relative)) {
       print $bg_image_url_relative;
     }
-    ?>');">
+    ?>') center / cover;">
     <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['comments']);
       hide($content['links']);
+      hide($content['field_background_image']);
       print render($content);
     ?>
   </div>

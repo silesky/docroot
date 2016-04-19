@@ -53,6 +53,9 @@ section:nth-child(2n+2) {
 		margin: auto;
 }
 
+.section-content-bg-wrapper {
+	width: 100%;
+}
 .header-image {
   position: relative;
   width: 100%;

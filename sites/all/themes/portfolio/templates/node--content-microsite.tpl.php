@@ -84,6 +84,11 @@
  * @ingroup themeable
  */
 ?>
+<div class="section-content-bg-wrapper" style="background: url('<?php
+  if (isset($bg_image_url_relative)) {
+    print $bg_image_url_relative;
+  }
+  ?>') center / cover;">
 <div class="section-content">
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
@@ -95,11 +100,7 @@
 
 
 
-  <div class="content"<?php print $content_attributes; ?> style="background: url('<?php
-    if (isset($bg_image_url_relative)) {
-      print $bg_image_url_relative;
-    }
-    ?>') center / cover;">
+  <div class="content"<?php print $content_attributes; ?>
     <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['comments']);
@@ -110,4 +111,5 @@
   </div>
 </div>
 
+</div>
 </div>

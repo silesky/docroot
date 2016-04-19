@@ -167,6 +167,7 @@ nav.header-nav-menu ul li {
 .field--calendar-microsite-wrapper {
 	margin: auto;
 	width: 90%;
+	text-align: center;
 }
 
 .event-container {

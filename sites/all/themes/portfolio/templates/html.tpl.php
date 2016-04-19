@@ -1,5 +1,5 @@
 <?php
-echo "html123";
+
 /**
  * @file
  * Default theme implementation to display the basic html structure of a single

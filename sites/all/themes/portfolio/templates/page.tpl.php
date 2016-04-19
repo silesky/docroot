@@ -2,13 +2,6 @@
   $bg_image_url_relative = getRelativePathBySetting('portfolio_background'); //sites/portfolio.dd/files/bg.jpg
   $logo_image_url_absolute = getAbsolutePathBySetting('portfolio_logo'); //http://portfolio.dd:8083/sites/portfolio.dd/files/logo_0.png
 ?>
-<!--- . .  . . . . . . . . .. . . . .  tmp  . . .  . . . . . . . . .. . . . . . -->
-<div class="tmp">
-<?php
-
-?>
-</div>
-<!--- . . . .  . . . . . . . . .. . .  tmp  . . . . . . . . . . . . . . . . . . -->
 <header class="header-container">
   <div style="background-image: url('<?php
   if (isset($bg_image_url_relative)) {

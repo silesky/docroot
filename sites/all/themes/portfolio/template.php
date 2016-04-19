@@ -31,8 +31,8 @@ function portfolio_preprocess_node(&$variables) {
 // logo image
 function getAbsolutePathBySetting($SETTINGSNAME) {
   $fid = theme_get_setting($SETTINGSNAME);
-  $uri = file_load($fid)->uri; //... public://bg.jpg
-  if ($uri) {
+  if (is_object(file_load($fid))) { //... public://bg.jpg
+    $uri = file_load($fid)->uri;
     $image_url_absolute = file_create_url($uri);
     return $image_url_absolute;
   }

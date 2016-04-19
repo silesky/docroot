@@ -31,6 +31,9 @@ body {
 h2, h3, h4, h5 {
 	margin: 0;
 }
+h2.single-page-title {
+	display: none;
+}
 main {
 	margin: auto;
 

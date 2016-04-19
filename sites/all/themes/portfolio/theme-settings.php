@@ -41,7 +41,7 @@ function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
   if ($doesDirectoryExistAndIsItWriteable  == true) {
     $form['portfolio_background'] = array(
       '#type' => 'managed_file',
-      '#title' => t('Upload large splash page background here (minimum 1000px wide)'),
+      '#title' => t('PORTFOLIO: SPLASH PAGE BACKGROUND UPLOAD (min width: 1000px)'),
       '#upload_location' => 'public://',
       '#progress_message' => t('Please wait...'),
       '#description' => t("select an image file from your computer"),
@@ -52,7 +52,7 @@ function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
     );
     $form['portfolio_logo'] = array(
       '#type' => 'managed_file',
-      '#title' => t('Upload logo image here (max width 500px)'),
+      '#title' => t('PORTFOLIO: SPLASH BANNER LOGO UPLOAD (max width: 500px)'),
       '#upload_location' => 'public://',
       '#progress_message' => t('Please wait...'),
       '#description' => t("select an image file from your computer"),

@@ -140,7 +140,7 @@ nav.header-nav-menu ul li {
 		column-count: 2
 		column-width: 500px
 		columns will combine when viewport < 1000px */
-
+	 padding: 0 10%;
 	-webkit-column-count: 3;
 	-ms-column-count: 3;
 	-moz-column-count: 3;

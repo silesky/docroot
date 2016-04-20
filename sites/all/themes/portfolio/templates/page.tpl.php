@@ -141,8 +141,6 @@ The Folgers acquired the First Folio that will visit Tulane in 1897 as part of t
 
 
 <footer class="footer-container">
-  <p class="tmp">FOOTER</div>
-
     <nav class="footer-nav-menu">
       <ul>
         <li><a href="#">About</a></li>

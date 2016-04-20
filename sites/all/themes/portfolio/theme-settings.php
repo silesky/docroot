@@ -45,7 +45,6 @@ function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
       '#upload_location' => 'public://',
       '#progress_message' => t('Please wait...'),
       '#description' => t("select an image file from your computer"),
-      '#default_value' => theme_get_setting('portfolio_background'),
       '#upload_validators' => array(
                'file_validate_extensions' => array('gif png jpg jpeg'),
                ),
@@ -56,7 +55,6 @@ function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
       '#upload_location' => 'public://',
       '#progress_message' => t('Please wait...'),
       '#description' => t("select an image file from your computer"),
-      '#default_value' => theme_get_setting('portfolio_logo'),
             '#upload_validators' => array(
                      'file_validate_extensions' => array('gif png jpg jpeg'),
                      ),

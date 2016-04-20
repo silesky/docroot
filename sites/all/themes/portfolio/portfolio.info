@@ -1,5 +1,5 @@
 name = Portfolio
-description = A single page, custom theme
+description = A single-page, custom theme
 core = 7.x
 
 
@@ -9,15 +9,9 @@ stylesheets[all][] = assets/css/normalize.css
 stylesheets[all][] = assets/css/main.css
 
 
-
 ; JS
 scripts[] = assets/js/modernizr.js
 
+
 ; Regions
 regions[content] = Content
-
-; Settings
-;  background image [1100 x 1577] and logo [495 x 330]
-; http://lorempixel.com/495/330/logo/ *AND*  http://lorempixel.com/1100/1577/Background/
-settings[portfolio_background] = /sites/all/themes/portfolio/assets/images/default_spash.jpg
-settings[portfolio_logo] =  /sites/all/themes/portfolio/assets/images/default_logo.png

@@ -4,10 +4,9 @@ core = 7.x
 
 
 ; CSS
-
 stylesheets[all][] = assets/css/normalize.css
 stylesheets[all][] = assets/css/main.css
-stylesheets[all][] = assets/css/lib/font-awesome/font-awesome.min.css
+
 
 ; JS
 scripts[] = assets/js/modernizr.js

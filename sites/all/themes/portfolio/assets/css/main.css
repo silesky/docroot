@@ -13,8 +13,11 @@
 }
 
 div.tmp {
+	top: 80%;
+	z-index: 1000;
+	position: fixed;
 	width: 100%;
-	height: 400px;
+	height: 200px;
 	border: 5px dotted white;
 	background-color: darkgrey;
 }

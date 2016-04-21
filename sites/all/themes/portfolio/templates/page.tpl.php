@@ -11,10 +11,12 @@
     HELLO
 
   <?php
-  $fb = theme_get_setting('facebook');
+
+    $fb = theme_get_setting('facebook');
     $tw = theme_get_setting('twitter');
     $yt = theme_get_setting('youtube');
-  print 'test: ' . print_r($yt); ?>
+
+?>
   </div>
   <div style="background-image: url('<?php
   if (isset($bg_image_url_relative)) {
@@ -47,9 +49,20 @@
   ?>
 
 <div class="social-media">
-  <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/fb_sq.svg"></a></li>
+  <?php
+if(isset($fb)):
+      print '<li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/fb_sq.svg"></a></li>';
+endif;
+if(isset($tw)):
+  print   '<li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/tw_sq.svg"></a></li>';
+endif;
+if(isset($yt)):
+  print   '<li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/yt_sq.svg"></a></li>';
+endif;
+?>
+  <!-- <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/fb_sq.svg"></a></li>
   <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/tw_sq.svg"></a></li>
-  <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/yt_sq.svg"></a></li>
+  <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/yt_sq.svg"></a></li> -->
 </div>
 </nav>
 </div>

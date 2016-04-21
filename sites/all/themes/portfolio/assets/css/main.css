@@ -130,6 +130,7 @@ nav.header-nav-menu ul li a {
 	background-color: white;
 	height: 2em;
 	width: 2em;
+	margin: 0 1px;
 }
 
 header.header-container {

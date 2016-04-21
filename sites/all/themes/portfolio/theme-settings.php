@@ -60,4 +60,25 @@ function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
                      ),
           );
   }
+  $form['portfolio_social']['facebook'] = array(
+   '#type'          => 'textfield',
+    '#title'         => t('Facebook Link'),
+    '#default_value' => theme_get_setting('facebook'),
+    '#description'   => t('Your Facebook page link'),
+    '#element_validate' => array('fontfolio_social_url_validate'),
+  );
+    $form['portfolio_social']['twitter'] = array(
+     '#type'          => 'textfield',
+      '#title'         => t('Twitter Link'),
+      '#default_value' => theme_get_setting('twitter'),
+      '#description'   => t('Your Twitter page link'),
+      '#element_validate' => array('fontfolio_social_url_validate'),
+    );
+      $form['portfolio_social']['youtube'] = array(
+       '#type'          => 'textfield',
+        '#title'         => t('Youtube Link'),
+        '#default_value' => theme_get_setting('youtube'),
+        '#description'   => t('Your Youtube page link'),
+        '#element_validate' => array('fontfolio_social_url_validate'),
+      );
 }

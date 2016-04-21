@@ -52,6 +52,12 @@
   'attributes' =>
   array('class' => array('main-menu'))));
   ?>
+
+<div class="social-media">
+   <li id="fb" href='#'>FB</li>
+   <li id="twitter" href='#'>TW</li>
+   <li id="youtube" href='#'>YT</li>
+</div>
 </nav>
 </div>
 </div>

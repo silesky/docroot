@@ -3,13 +3,19 @@
   $bg_image_url_relative = getRelativePathBySetting('portfolio_background'); //sites/portfolio.dd/files/bg.jpg
   $logo_image_url_absolute = getAbsolutePathBySetting('portfolio_logo'); //http://portfolio.dd:8083/sites/portfolio.dd/files/logo_0.png
 ?>
-<!-- debugging...
-<div class="tmp">
-<?php print 'test: ' . $bg_image_url_relative; ?>
-</div>
--->
+
 
 <header class="header-container">
+  debugging...
+  <div class="tmp">
+    HELLO
+
+  <?php
+  $fb = theme_get_setting('facebook');
+    $tw = theme_get_setting('twitter');
+    $yt = theme_get_setting('youtube');
+  print 'test: ' . print_r($yt); ?>
+  </div>
   <div style="background-image: url('<?php
   if (isset($bg_image_url_relative)) {
     print $bg_image_url_relative;
@@ -33,20 +39,7 @@
 
 <div class="header-nav-container">
   <nav class="header-nav-menu" >
-    <!--
-    <ul>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Exhibit</a></li>
-    <li><a href="#">Events</a></li>
-    <li><a href="#">Jazz Funeral</a></li>
-    <li><a href="#">Collaborators</a></li>
-    <li><a href="#">Resources</a></li>
-    <li><a href="#">Contact</a></li>
-    <li><i class="fa fa-3x fa-facebook-square"></i></li>
-    <li><i class="fa fa-3x fa-twitter-square"></i></li>
-    <li><i class="fa fa-3x fa-youtube-square"></i></li>
-  </ul>
--->
+
 <?php print theme('links__system_main_menu', array(
   'links' => $main_menu,
   'attributes' =>
@@ -54,9 +47,9 @@
   ?>
 
 <div class="social-media">
-   <li id="fb" href='#'>FB</li>
-   <li id="twitter" href='#'>TW</li>
-   <li id="youtube" href='#'>YT</li>
+  <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/fb_sq.svg"></a></li>
+  <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/tw_sq.svg"></a></li>
+  <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/yt_sq.svg"></a></li>
 </div>
 </nav>
 </div>

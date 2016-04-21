@@ -110,7 +110,15 @@ nav.header-nav-menu ul li a {
 	text-decoration: none;
 	color: white;
 }
-
+.social-media  li {
+	list-style-type: none;
+	display: inline-block;
+}
+.social-media img {
+	background-color: white;
+	height: 2em;
+	width: 2em;
+}
 
 header.header-container {
 	display: initial;

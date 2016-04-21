@@ -49,20 +49,17 @@
   ?>
 
 <div class="social-media">
-  <?php
-if(isset($fb)):
-      print '<li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/fb_sq.svg"></a></li>';
-endif;
-if(isset($tw)):
-  print   '<li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/tw_sq.svg"></a></li>';
-endif;
-if(isset($yt)):
-  print   '<li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/yt_sq.svg"></a></li>';
-endif;
-?>
-  <!-- <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/fb_sq.svg"></a></li>
-  <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/tw_sq.svg"></a></li>
-  <li><a href="#"><img src="/sites/all/themes/portfolio/assets/images/icons/yt_sq.svg"></a></li> -->
+    <?php
+    if(!empty($fb)):
+          print '<li><a href="' . $fb . '"><img src="/sites/all/themes/portfolio/assets/images/icons/fb_sq.svg"></a></li>';
+    endif;
+    if(!empty($tw)):
+      print   '<li><a href="' . $tw . '"><img src="/sites/all/themes/portfolio/assets/images/icons/tw_sq.svg"></a></li>';
+    endif;
+    if(!empty($yt)):
+      print   '<li><a href="' . $yt . '"><img src="/sites/all/themes/portfolio/assets/images/icons/yt_sq.svg"></a></li>';
+    endif;
+    ?>
 </div>
 </nav>
 </div>

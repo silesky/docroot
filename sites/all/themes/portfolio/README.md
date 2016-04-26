@@ -3,6 +3,7 @@
   - The Single Page Site module does some cool stuff that would otherwise take a lot of hacking: it lets you order your pages based on the order of your navigation menu (i.e outputs all nodes, sorted by menu weight, without using views).
  - it automatically links all your pages to the menu with anchor tags, so when you click a link on the top navigation, you scroll down to the appropriate place on the page.
 
+/?q=admin/config/system/single-page-site
 Single Page Site Module Configuration:
  - Modules -> Single Page Site -> Configuration
    - Menu -> Main Menu

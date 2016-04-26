@@ -6,10 +6,6 @@
 
 
 <header class="header-container">
-  debugging...
-  <div class="tmp">
-    HELLO
-
   <?php
 
     $fb = theme_get_setting('facebook');
@@ -39,6 +35,9 @@
   </div>
 </div>
 
+</div>
+</header>
+
 <div class="header-nav-container">
   <nav class="header-nav-menu" >
 
@@ -63,9 +62,6 @@
 </div>
 </nav>
 </div>
-</div>
-</header>
-
 <main>
 
   <?php print render($page['content']); ?>

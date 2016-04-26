@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Tulane Portfolio Microsite feature.
+ */
+
+include_once 'tulane_portfolio_microsite.features.inc';

@@ -36,8 +36,6 @@
 </div>
 
 </div>
-</header>
-
 <div class="header-nav-container">
   <nav class="header-nav-menu" >
 
@@ -62,6 +60,9 @@
 </div>
 </nav>
 </div>
+</header>
+
+
 <main>
 
   <?php print render($page['content']); ?>

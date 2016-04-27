@@ -59,7 +59,6 @@ section:nth-child(2n+2) {
 		width: 90%;
 		margin: auto;
 }
-
 .section-content-bg-wrapper {
 	padding: 1%;
 }
@@ -85,12 +84,9 @@ section:nth-child(2n+2) {
     top: 30%;
 		position: absolute;
     left: 50%;
-
-
 }
 
 .header-image-logo {
-
 }
 
 .header-nav-container {

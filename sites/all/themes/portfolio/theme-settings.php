@@ -88,9 +88,11 @@ function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
 
 // resolves bug: when theme-settings.php has a managed_file field and a submit callback (i.e. $form['#submit']), 'call to undefined function' error is thrown
 $theme_settings_path = drupal_get_path('theme', 'portfolio') . '/theme-settings.php';
-if (file_exists($theme_settings_path) && !in_array($theme__settings_path, $form_state['build_info']['files'])) {
+
+if (file_exists($theme_settings_path) && !in_array($theme_settings_path, $form_state['build_info']['files'])) {
   $form_state['build_info']['files'][] = $theme_settings_path;
 }
+
 function make_persistent($SETTINGSNAME) {
   $image_custom_index = theme_get_setting($SETTINGSNAME);
   if (isset($image_custom_index)) {
@@ -104,6 +106,7 @@ function make_persistent($SETTINGSNAME) {
     }
   }
 }
+// passes whichever submit button is clicked by reference.
 function portfolio_form_system_theme_settings_submit(&$form, &$form_state) {
   make_persistent('portfolio_background');
   make_persistent('portfolio_logo');

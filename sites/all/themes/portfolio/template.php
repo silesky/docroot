@@ -20,7 +20,7 @@ function portfolio_preprocess_node(&$variables) {
 
      //print_r($node);
    if (!empty($node)) {
-          $background_image_uri = $node->field_background_image['und'][0]['uri']; // public://bg_0.jpg
+          $background_image_uri = $node->field_portfolio_bg_image['und'][0]['uri']; // public://bg_0.jpg
           $variables['background_image_uri'] = $background_image_uri;
           $background_image_url = file_create_url($background_image_uri);  // http://portfolio.dd:8083/sites/portfolio.dd/files/bg_0.jpg
           $variables['background_image_url'] = $background_image_url;

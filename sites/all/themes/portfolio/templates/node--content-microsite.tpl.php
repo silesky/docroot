@@ -106,7 +106,7 @@
       // We hide the comments and links now so that we can render them later.
       hide($content['comments']);
       hide($content['links']);
-      hide($content['field_background_image']);
+      hide($content['field_portfolio_bg_image']);
       print render($content);
     ?>
   </div>

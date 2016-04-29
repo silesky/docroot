@@ -51,7 +51,7 @@ function tulane_microsite_ct_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Page 2',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
       0 => 'field_page_2_bg_image',
       1 => 'field_page_2_content',
@@ -64,7 +64,7 @@ function tulane_microsite_ct_field_group_info() {
         'classes' => 'group-b field-group-fieldset ',
         'description' => '',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'collapsible',
     ),
   );
   $export['group_b|node|microsite|form'] = $field_group;
@@ -80,7 +80,7 @@ function tulane_microsite_ct_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Page 3',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'field_page_3_bg_image',
       1 => 'field_page_3_content',
@@ -93,7 +93,7 @@ function tulane_microsite_ct_field_group_info() {
         'classes' => 'group-c field-group-fieldset ',
         'description' => '',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'collapsible',
     ),
   );
   $export['group_c|node|microsite|form'] = $field_group;
@@ -109,7 +109,7 @@ function tulane_microsite_ct_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Page 4',
-    'weight' => '8',
+    'weight' => '9',
     'children' => array(
       0 => 'field_page_4_bg_image',
       1 => 'field_page_4_content',
@@ -138,7 +138,7 @@ function tulane_microsite_ct_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Page 5',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'field_page_5_bg_image',
       1 => 'field_page_5_content',
@@ -167,7 +167,7 @@ function tulane_microsite_ct_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Footer',
-    'weight' => '10',
+    'weight' => '14',
     'children' => array(
       0 => 'field_footer_logo',
       1 => 'field_footer_logo_link',

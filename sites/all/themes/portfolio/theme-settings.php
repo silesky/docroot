@@ -82,32 +82,46 @@ function portfolio_form_system_theme_settings_alter(&$form, $form_state) {
     '#default_value' => theme_get_setting('youtube'),
     '#description'   => t('Your Youtube page link'),
   );
-// call make_persistent() whenever the form is submitted;
+// allows portfolio_form_system_theme_settings_submit() to get called whenever the form is submitted
   $form['#submit'][] = 'portfolio_form_system_theme_settings_submit';
 }
 
 // resolves bug: when theme-settings.php has a managed_file field and a submit callback (i.e. $form['#submit']), 'call to undefined function' error is thrown
 $theme_settings_path = drupal_get_path('theme', 'portfolio') . '/theme-settings.php';
-
 if (file_exists($theme_settings_path) && !in_array($theme_settings_path, $form_state['build_info']['files'])) {
   $form_state['build_info']['files'][] = $theme_settings_path;
 }
 
-function make_persistent($SETTINGSNAME) {
-  $image_custom_index = theme_get_setting($SETTINGSNAME);
-  if (isset($image_custom_index)) {
-    $fid = theme_get_setting($SETTINGSNAME);
-    $file = file_load($fid);
-    if ($file->status == 0) {
-      $file->status = FILE_STATUS_PERMANENT;
-      file_save($file);
-      // Sets a Drupal message just for clarity.
-      drupal_set_message(t('Image saved.'), 'status');
+
+
+
+function portfolio_form_system_theme_settings_submit(&$form, &$form_state) {
+  // $form_state['values'] array -- where the twitter url, background image etc stuff is stored
+  $background_fid = $form_state['values']['portfolio_background'];
+  $logo_fid = $form_state['values']['portfolio_logo'];
+
+  // https://api.drupal.org/api/drupal/developer!topics!forms_api_reference.html/7.x
+  // otherwise, the image is only temporary, and will be deleted eventually via a cron job
+  function save_image_for_real($FID, $MSG) {
+  // load "an object representing the file" with file_load
+  $image = file_load($FID);
+    if (is_object($image)) {
+      // Check to make sure that the file is set to be permanent.
+      if ($image->status == 0) {
+        // Update the status.
+        $image->status = FILE_STATUS_PERMANENT;
+        // Save the update.
+        file_save($image);
+        // Add a reference to prevent warnings.
+        file_usage_add($image, 'portfolio', 'theme', 1);
+        drupal_set_message(t($MSG), 'status');
+       }
     }
   }
-}
-// passes whichever submit button is clicked by reference.
-function portfolio_form_system_theme_settings_submit(&$form, &$form_state) {
-  make_persistent('portfolio_background');
-  make_persistent('portfolio_logo');
+  if (!empty($background_fid)) {
+    save_image_for_real($background_fid, 'Background saved.');
+    }
+  if (!empty($logo_fid)) {
+    save_image_for_real($logo_fid, 'Logo saved.');
+  }
 }

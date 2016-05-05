@@ -14,3 +14,7 @@ scripts[] = assets/js/modernizr.js
 
 ; Regions
 regions[content] = Content
+
+; Settings
+settings[portfolio_background] =
+settings[portfolio_logo] =
